@@ -1,0 +1,135 @@
+
+<form id="62088553">
+<property name="name" value="formmodeler-migration.UpdateUserProfile-taskform.form"/>
+<property name="displayMode" value="default"/>
+<property name="status" value="0"/>
+<property name="migrationStep" value="1"/>
+<field position="0" name="boolean" type="CheckBox" id="465916016">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;boolean (boolean)quot;"/>
+<property name="readonly" value="false"/>
+<property name="outputBinding" value="boolean"/>
+<property name="fieldClass" value="java.lang.Boolean"/>
+</field>
+<field position="1" name="cv" type="Document" id="1711137757">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;cv (cv)quot;"/>
+<property name="readonly" value="false"/>
+<property name="outputBinding" value="cv"/>
+<property name="fieldClass" value="org.jbpm.document.Document"/>
+</field>
+<field position="2" name="float" type="InputTextFloat" id="926972869">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;float (float)quot;"/>
+<property name="readonly" value="false"/>
+<property name="outputBinding" value="float"/>
+<property name="fieldClass" value="java.lang.Float"/>
+</field>
+<field position="3" name="integer" type="InputTextInteger" id="466943341">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;integer (integer)quot;"/>
+<property name="readonly" value="false"/>
+<property name="outputBinding" value="integer"/>
+<property name="fieldClass" value="java.lang.Integer"/>
+</field>
+<field position="4" name="person_address" type="Subform" id="1001724022">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;dequot;,quot;quot;quot;ptquot;,quot;quot;quot;jaquot;,quot;quot;quot;enquot;,quot;address (person)quot;quot;frquot;,quot;quot;quot;caquot;,quot;quot;quot;esquot;,quot;quot;quot;zhquot;,quot;quot;"/>
+<property name="errorMessage" value="quot;dequot;,quot;quot;quot;ptquot;,quot;quot;quot;jaquot;,quot;quot;quot;enquot;,quot;quot;quot;frquot;,quot;quot;quot;caquot;,quot;quot;quot;esquot;,quot;quot;quot;zhquot;,quot;quot;"/>
+<property name="title" value="quot;dequot;,quot;quot;quot;ptquot;,quot;quot;quot;jaquot;,quot;quot;quot;enquot;,quot;quot;quot;frquot;,quot;quot;quot;caquot;,quot;quot;quot;esquot;,quot;quot;quot;zhquot;,quot;quot;"/>
+<property name="readonly" value="false"/>
+<property name="outputBinding" value="person/address"/>
+<property name="defaultSubform" value="AddressForm.form"/>
+<property name="fieldClass" value="java.lang.Object"/>
+<property name="movedToForm" value="formmodeler-migration.UpdateUserProfile-taskform-person"/>
+</field>
+<field position="5" name="person_addressList" bag-type="bxms.formmodeler_migration.Address" type="MultipleSubform" id="219652553">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;dequot;,quot;quot;quot;ptquot;,quot;quot;quot;jaquot;,quot;quot;quot;enquot;,quot;addressList (person)quot;quot;frquot;,quot;quot;quot;caquot;,quot;quot;quot;esquot;,quot;quot;quot;zhquot;,quot;quot;"/>
+<property name="errorMessage" value="quot;dequot;,quot;quot;quot;ptquot;,quot;quot;quot;jaquot;,quot;quot;quot;enquot;,quot;quot;quot;frquot;,quot;quot;quot;caquot;,quot;quot;quot;esquot;,quot;quot;quot;zhquot;,quot;quot;"/>
+<property name="title" value="quot;dequot;,quot;quot;quot;ptquot;,quot;quot;quot;jaquot;,quot;quot;quot;enquot;,quot;quot;quot;frquot;,quot;quot;quot;caquot;,quot;quot;quot;esquot;,quot;quot;quot;zhquot;,quot;quot;"/>
+<property name="readonly" value="false"/>
+<property name="outputBinding" value="person/addressList"/>
+<property name="defaultSubform" value="AddressForm.form"/>
+<property name="previewSubform" value="AddressForm.form"/>
+<property name="tableSubform" value="AddressForm.form"/>
+<property name="newItemText" value="quot;dequot;,quot;quot;quot;ptquot;,quot;quot;quot;jaquot;,quot;quot;quot;enquot;,quot;quot;quot;frquot;,quot;quot;quot;caquot;,quot;quot;quot;esquot;,quot;quot;quot;zhquot;,quot;quot;"/>
+<property name="addItemText" value="quot;dequot;,quot;quot;quot;ptquot;,quot;quot;quot;jaquot;,quot;quot;quot;enquot;,quot;quot;quot;frquot;,quot;quot;quot;caquot;,quot;quot;quot;esquot;,quot;quot;quot;zhquot;,quot;quot;"/>
+<property name="cancelItemText" value="quot;dequot;,quot;quot;quot;ptquot;,quot;quot;quot;jaquot;,quot;quot;quot;enquot;,quot;quot;quot;frquot;,quot;quot;quot;caquot;,quot;quot;quot;esquot;,quot;quot;quot;zhquot;,quot;quot;"/>
+<property name="deleteItems" value="false"/>
+<property name="updateItems" value="false"/>
+<property name="visualizeItems" value="false"/>
+<property name="hideCreateItem" value="false"/>
+<property name="expanded" value="false"/>
+<property name="enableTableEnterData" value="false"/>
+<property name="fieldClass" value="java.util.List"/>
+<property name="movedToForm" value="formmodeler-migration.UpdateUserProfile-taskform-person"/>
+</field>
+<field position="6" name="person_age" type="InputTextPrimitiveInteger" id="709775569">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;age (person)quot;"/>
+<property name="readonly" value="false"/>
+<property name="outputBinding" value="person/age"/>
+<property name="fieldClass" value="int"/>
+<property name="movedToForm" value="formmodeler-migration.UpdateUserProfile-taskform-person"/>
+</field>
+<field position="7" name="person_birthdate" type="InputDate" id="105674333">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;birthdate (person)quot;"/>
+<property name="readonly" value="false"/>
+<property name="outputBinding" value="person/birthdate"/>
+<property name="fieldClass" value="java.util.Date"/>
+<property name="movedToForm" value="formmodeler-migration.UpdateUserProfile-taskform-person"/>
+</field>
+<field position="8" name="person_married" type="CheckBox" id="1876787874">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;married (person)quot;"/>
+<property name="readonly" value="false"/>
+<property name="outputBinding" value="person/married"/>
+<property name="fieldClass" value="java.lang.Boolean"/>
+<property name="movedToForm" value="formmodeler-migration.UpdateUserProfile-taskform-person"/>
+</field>
+<field position="9" name="person_name" type="InputText" id="510276480">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;name (person)quot;"/>
+<property name="readonly" value="false"/>
+<property name="outputBinding" value="person/name"/>
+<property name="fieldClass" value="java.lang.String"/>
+<property name="movedToForm" value="formmodeler-migration.UpdateUserProfile-taskform-person"/>
+</field>
+<field position="10" name="person_salary" type="InputTextBigDecimal" id="593360868">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;salary (person)quot;"/>
+<property name="readonly" value="false"/>
+<property name="outputBinding" value="person/salary"/>
+<property name="fieldClass" value="java.math.BigDecimal"/>
+<property name="movedToForm" value="formmodeler-migration.UpdateUserProfile-taskform-person"/>
+</field>
+<field position="11" name="person_sex" type="InputTextCharacter" id="1415305721">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;sex (person)quot;"/>
+<property name="readonly" value="false"/>
+<property name="outputBinding" value="person/sex"/>
+<property name="fieldClass" value="java.lang.Character"/>
+<property name="movedToForm" value="formmodeler-migration.UpdateUserProfile-taskform-person"/>
+</field>
+<field position="12" name="string" type="InputText" id="1489171466">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;string (string)quot;"/>
+<property name="readonly" value="false"/>
+<property name="outputBinding" value="string"/>
+<property name="fieldClass" value="java.lang.String"/>
+</field>
+<field position="1013" name="person" bag-type="bxms.formmodeler_migration.Person" type="Subform" id="1524500059293">
+<property name="label" value="quot;enquot;,quot;personquot;"/>
+<property name="outputBinding" value="person"/>
+<property name="defaultSubform" value="10180b91-0fe4-44b0-912a-d957e958a991"/>
+<property name="fieldClass" value="java.lang.Object"/>
+</field>
+<dataHolder inputId="" name="#B29FE4" type="basicType" outId="boolean" value="java.lang.Boolean" id="boolean"/>
+<dataHolder inputId="" name="#FF54A7" type="basicType" outId="cv" value="org.jbpm.document.Document" id="cv"/>
+<dataHolder inputId="" name="#FBB767" type="basicType" outId="float" value="java.lang.Float" id="float"/>
+<dataHolder inputId="" name="#9BCAFA" type="basicType" outId="integer" value="java.lang.Integer" id="integer"/>
+<dataHolder inputId="" name="#E9E371" type="dataModelerEntry" outId="person" value="bxms.formmodeler_migration.Person" id="person"/>
+<dataHolder inputId="" name="#BBBBBB" type="basicType" outId="string" value="java.lang.String" id="string"/>
+</form>
