@@ -47,7 +47,7 @@ public class DataObjectFormModelCreationPresenterTest {
 
     private Path path;
 
-    private DataObjectFormModelCreationPresenterManager presenter;
+    private DataObjectFormModelBinder presenter;
 
     private List<DataObjectFormModel> formModels = new ArrayList<>();
 
@@ -77,9 +77,9 @@ public class DataObjectFormModelCreationPresenterTest {
 
         translationService = mock(TranslationService.class);
 
-        presenter = new DataObjectFormModelCreationPresenterManager(dataObjectFormModelCreationServiceCallerMock,
-                                                                    view,
-                                                                    translationService);
+        presenter = new DataObjectFormModelBinder(dataObjectFormModelCreationServiceCallerMock,
+                                                  view,
+                                                  translationService);
     }
 
     @Test

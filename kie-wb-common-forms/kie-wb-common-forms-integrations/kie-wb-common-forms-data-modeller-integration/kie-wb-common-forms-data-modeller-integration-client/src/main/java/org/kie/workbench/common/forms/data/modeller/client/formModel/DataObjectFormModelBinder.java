@@ -27,13 +27,14 @@ import org.jboss.errai.ui.client.local.spi.TranslationService;
 import org.kie.workbench.common.forms.data.modeller.client.resources.i18n.DataModellerIntegrationConstants;
 import org.kie.workbench.common.forms.data.modeller.model.DataObjectFormModel;
 import org.kie.workbench.common.forms.data.modeller.service.DataObjectFormModelCreationService;
-import org.kie.workbench.common.forms.editor.client.handler.formModel.FormModelCreationViewManager;
+import org.kie.workbench.common.forms.editor.client.handler.formModel.FormModelBinder;
+import org.kie.workbench.common.forms.model.FormModel;
 import org.uberfire.backend.vfs.Path;
 import org.uberfire.client.mvp.UberElement;
 
 @Dependent
-public class DataObjectFormModelCreationPresenterManager implements FormModelCreationViewManager<DataObjectFormModel>,
-                                                                    DataObjectFormModelCreationView.Presenter {
+public class DataObjectFormModelBinder implements FormModelBinder<DataObjectFormModel>,
+                                                  DataObjectFormModelCreationView.Presenter {
 
     protected Caller<DataObjectFormModelCreationService> dataObjectFormModelCreationService;
 
@@ -42,9 +43,9 @@ public class DataObjectFormModelCreationPresenterManager implements FormModelCre
     protected TranslationService translationService;
 
     @Inject
-    public DataObjectFormModelCreationPresenterManager(Caller<DataObjectFormModelCreationService> dataObjectFormModelCreationService,
-                                                       DataObjectFormModelCreationView view,
-                                                       TranslationService translationService) {
+    public DataObjectFormModelBinder(Caller<DataObjectFormModelCreationService> dataObjectFormModelCreationService,
+                                     DataObjectFormModelCreationView view,
+                                     TranslationService translationService) {
         this.dataObjectFormModelCreationService = dataObjectFormModelCreationService;
         this.view = view;
         this.translationService = translationService;
@@ -94,5 +95,10 @@ public class DataObjectFormModelCreationPresenterManager implements FormModelCre
     @Override
     public UberElement getView() {
         return view;
+    }
+
+    @Override
+    public boolean supports(FormModel formModel) {
+        return true;
     }
 }

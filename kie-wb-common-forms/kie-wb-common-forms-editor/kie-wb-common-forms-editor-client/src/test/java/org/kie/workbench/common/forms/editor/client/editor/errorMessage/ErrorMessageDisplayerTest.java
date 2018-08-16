@@ -21,6 +21,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.kie.workbench.common.forms.editor.client.resources.i18n.FormEditorConstants;
+import org.kie.workbench.common.forms.editor.model.FormModelerContentError;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.uberfire.mvp.Command;
@@ -36,6 +37,8 @@ public class ErrorMessageDisplayerTest {
     private static final String MESSAGE = "message";
     private static final String FULL_MESSAGE = "full message";
     private static final String SOURCE_TYPE = "dataObject";
+
+    private static final FormModelerContentError error = new FormModelerContentError(MESSAGE, FULL_MESSAGE, SOURCE_TYPE, null);
 
     @Mock
     private TranslationService translationService;
@@ -58,7 +61,7 @@ public class ErrorMessageDisplayerTest {
     public void simpleMessageTest() {
         verify(view).init(displayer);
 
-        displayer.show(MESSAGE, SOURCE_TYPE, closeCommand);
+        displayer.show(error, closeCommand);
 
         verify(view).setSourceType(SOURCE_TYPE);
         verify(view).displayShowMoreAnchor(false);
@@ -81,7 +84,7 @@ public class ErrorMessageDisplayerTest {
     public void fullMessageTest() {
         verify(view).init(displayer);
 
-        displayer.show(MESSAGE, FULL_MESSAGE, SOURCE_TYPE, closeCommand);
+        displayer.show(error, closeCommand);
 
         verify(view).setSourceType(SOURCE_TYPE);
         verify(view).displayShowMoreAnchor(true);

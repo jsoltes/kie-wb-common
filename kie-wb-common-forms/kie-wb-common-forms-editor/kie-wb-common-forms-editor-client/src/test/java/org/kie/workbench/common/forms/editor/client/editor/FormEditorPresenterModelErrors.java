@@ -52,12 +52,11 @@ public class FormEditorPresenterModelErrors extends FormEditorPresenterAbstractT
         verify(editorHelper).initHelper(content);
 
         verify(view).init(presenter);
-        verify(errorMessageDisplayer, never()).show(anyString(), anyString(), any());
+        verify(errorMessageDisplayer, never()).show(any(), any());
 
         verify(layoutEditorMock).clear();
         verify(layoutEditorMock).init(anyString(), anyString(), anyString(), any());
         verify(layoutEditorMock).loadLayout(any());
-
 
         verify(view).setupLayoutEditor(layoutEditorMock);
 
@@ -66,6 +65,8 @@ public class FormEditorPresenterModelErrors extends FormEditorPresenterAbstractT
 
     @Test
     public void testModelError() {
+        final FormModelerContentError ERROR = new FormModelerContentError(MODEL_ERROR_MESSAGE, MODEL_ERROR_MESSAGE, DATA_OBJECT, null);
+
         errorType = ErrorType.MODEL;
 
         loadContent();
@@ -75,12 +76,11 @@ public class FormEditorPresenterModelErrors extends FormEditorPresenterAbstractT
         verify(editorHelper).initHelper(content);
 
         verify(view).init(presenter);
-        verify(errorMessageDisplayer).show(eq(MODEL_ERROR_MESSAGE), eq(MODEL_ERROR_MESSAGE), eq(DATA_OBJECT), any());
+        verify(errorMessageDisplayer).show(eq(ERROR), any());
 
         verify(layoutEditorMock).clear();
         verify(layoutEditorMock).init(anyString(), anyString(), anyString(), any());
         verify(layoutEditorMock).loadLayout(any());
-
 
         verify(view).setupLayoutEditor(layoutEditorMock);
 
@@ -89,6 +89,8 @@ public class FormEditorPresenterModelErrors extends FormEditorPresenterAbstractT
 
     @Test
     public void testUnexpected() {
+        final FormModelerContentError UNEXPECTED_ERROR = new FormModelerContentError(UNEXPECTED_ERROR_MESSAGE, UNEXPECTED_ERROR_MESSAGE, null, null);
+
         errorType = ErrorType.UNEXPECTED;
 
         loadContent();
@@ -98,12 +100,11 @@ public class FormEditorPresenterModelErrors extends FormEditorPresenterAbstractT
         verify(editorHelper).initHelper(content);
 
         verify(view).init(presenter);
-        verify(errorMessageDisplayer).show(eq(UNEXPECTED_ERROR_MESSAGE), eq(UNEXPECTED_ERROR_MESSAGE), eq(null), any());
+        verify(errorMessageDisplayer).show(eq(UNEXPECTED_ERROR), any());
 
         verify(layoutEditorMock, never()).clear();
         verify(layoutEditorMock, never()).init(anyString(), anyString(), anyString(), any());
         verify(layoutEditorMock, never()).loadLayout(any());
-
 
         verify(view, never()).setupLayoutEditor(layoutEditorMock);
 
@@ -114,10 +115,10 @@ public class FormEditorPresenterModelErrors extends FormEditorPresenterAbstractT
     public FormModelerContent serviceLoad() {
         FormModelerContent content = super.serviceLoad();
         if (errorType.equals(ErrorType.MODEL)) {
-            content.setError(new FormModelerContentError(MODEL_ERROR_MESSAGE, MODEL_ERROR_MESSAGE, DATA_OBJECT));
+            content.setError(new FormModelerContentError(MODEL_ERROR_MESSAGE, MODEL_ERROR_MESSAGE, DATA_OBJECT, null));
         } else if (errorType.equals(ErrorType.UNEXPECTED)) {
             content.setDefinition(null);
-            content.setError(new FormModelerContentError(UNEXPECTED_ERROR_MESSAGE, UNEXPECTED_ERROR_MESSAGE, null));
+            content.setError(new FormModelerContentError(UNEXPECTED_ERROR_MESSAGE, UNEXPECTED_ERROR_MESSAGE, null, null));
         }
         return content;
     }

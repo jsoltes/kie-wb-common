@@ -16,13 +16,19 @@
 
 package org.kie.workbench.common.forms.editor.client.editor.errorMessage;
 
+import java.util.Optional;
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
 import org.jboss.errai.ui.client.local.spi.TranslationService;
 import org.kie.soup.commons.validation.PortablePreconditions;
+import org.kie.workbench.common.forms.editor.client.handler.formModel.FormModelBinder;
+import org.kie.workbench.common.forms.editor.client.handler.formModel.FormModelsPresenter;
+import org.kie.workbench.common.forms.editor.client.handler.formModel.container.FormModelCreationContainer;
 import org.kie.workbench.common.forms.editor.client.resources.i18n.FormEditorConstants;
+import org.kie.workbench.common.forms.editor.model.FormModelerContentError;
 import org.uberfire.mvp.Command;
 
 @Dependent
@@ -32,12 +38,12 @@ public class ErrorMessageDisplayer implements ErrorMessageDisplayerView.Presente
 
     private ErrorMessageDisplayerView view;
 
+    FormModelsPresenter formModelsPresenter;
+
     private boolean showMoreEnabled = false;
     private boolean showMore = false;
 
-    private String shortMessage;
-
-    private String fullMessage;
+    private FormModelerContentError error;
 
     private Command closeCommand;
 
@@ -52,22 +58,16 @@ public class ErrorMessageDisplayer implements ErrorMessageDisplayerView.Presente
         view.init(this);
     }
 
-    public void show(String message, String sourceType, Command closeCommand) {
-        show(message, null, sourceType, closeCommand);
-    }
-
-    public void show(String shortMessage, String fullMessage, String sourceType, Command closeCommand) {
-        PortablePreconditions.checkNotNull("shortMessage", shortMessage);
-        PortablePreconditions.checkNotNull("sourceType", sourceType);
+    public void show(FormModelerContentError error, Command closeCommand) {
+        PortablePreconditions.checkNotNull("error", error);
         PortablePreconditions.checkNotNull("closeCommand", closeCommand);
 
-        this.shortMessage = shortMessage;
-        this.fullMessage = fullMessage;
+        this.error = error;
         this.closeCommand = closeCommand;
 
-        view.setSourceType(sourceType);
+        view.setSourceType(error.getSourceType());
 
-        showMoreEnabled = fullMessage != null;
+        showMoreEnabled = error.getFullMessage() != null;
 
         view.displayShowMoreAnchor(showMoreEnabled);
 
@@ -76,7 +76,20 @@ public class ErrorMessageDisplayer implements ErrorMessageDisplayerView.Presente
             view.setShowMoreLabel(translationService.getTranslation(FormEditorConstants.ShowMoreLabel));
         }
 
-        view.show(shortMessage);
+        if(error.getOriginalModel()!=null && error.getOriginalModel().allowsRebinding()){
+            Optional<FormModelBinder> optional = formModelsPresenter.getRegisteredCreationManagers().stream().
+                    map(FormModelCreationContainer::getCreationViewManager)
+                    .filter(f->f.supports(error.getOriginalModel()))
+                    .findAny();
+
+            if(optional.isPresent()) {
+                view.show(error.getShortMessage(), optional.get());
+            } else {
+                view.show(error.getShortMessage());
+            }
+        } else {
+            view.show(error.getShortMessage());
+        }
     }
 
     @Override
@@ -90,10 +103,10 @@ public class ErrorMessageDisplayer implements ErrorMessageDisplayerView.Presente
     public void notifyShowMorePressed() {
         if (showMoreEnabled) {
             if (showMore) {
-                view.show(shortMessage);
+                view.show(error.getShortMessage());
                 view.setShowMoreLabel(translationService.getTranslation(FormEditorConstants.ShowMoreLabel));
             } else {
-                view.show(fullMessage);
+                view.show(error.getFullMessage());
                 view.setShowMoreLabel(translationService.getTranslation(FormEditorConstants.ShowLessLabel));
             }
             showMore = !showMore;

@@ -37,4 +37,11 @@ public interface FormModel {
      * Returns {@link ModelProperty} identified by the name parameter
      */
     ModelProperty getProperty(String name);
+
+    /**
+     * Determines if the model is rebindable
+     */
+    default boolean allowsRebinding(){
+        return false;
+    }
 }

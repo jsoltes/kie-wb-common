@@ -19,7 +19,7 @@ import com.google.gwtmockito.GwtMockitoTestRunner;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.kie.workbench.common.forms.editor.client.handler.formModel.FormModelCreationViewManager;
+import org.kie.workbench.common.forms.editor.client.handler.formModel.FormModelBinder;
 import org.kie.workbench.common.forms.editor.client.handler.formModel.SelectModelCreatorManagerCallback;
 import org.mockito.Mock;
 import org.uberfire.backend.vfs.Path;
@@ -33,7 +33,7 @@ public class FormModelCreationContainerTest {
     private FormModelCreationContainerView view;
 
     @Mock
-    private FormModelCreationViewManager creationViewManager;
+    private FormModelBinder creationViewManager;
 
     @Mock
     private SelectModelCreatorManagerCallback callback;

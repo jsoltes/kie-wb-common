@@ -54,7 +54,7 @@ public class JBPMFormModelCreationPresenterTest {
 
     private Path path;
 
-    private JBPMFormModelCreationPresenterManager presenter;
+    private JBPMFormModelBinder presenter;
 
     private NewResourcePresenter newResourcePresenter;
 
@@ -81,10 +81,10 @@ public class JBPMFormModelCreationPresenterTest {
 
         newResourcePresenter = mock(NewResourcePresenter.class);
 
-        presenter = new JBPMFormModelCreationPresenterManager(finderServiceCallerMock,
-                                                              view,
-                                                              translationService,
-                                                              newResourcePresenter);
+        presenter = new JBPMFormModelBinder(finderServiceCallerMock,
+                                            view,
+                                            translationService,
+                                            newResourcePresenter);
     }
 
     @Test

@@ -57,7 +57,7 @@ public class FormModelsPresenterTest {
     protected ManagedInstance<FormModelCreationContainer> containerInstance;
 
     @Mock
-    protected ManagedInstance<FormModelCreationViewManager> modelManagerInstance;
+    protected ManagedInstance<FormModelBinder> modelManagerInstance;
 
     @Before
     public void setup() {
@@ -67,7 +67,7 @@ public class FormModelsPresenterTest {
 
             FormModelCreationContainer container = new FormModelCreationContainer(containerView);
 
-            FormModelCreationViewManager creationManager = mock(FormModelCreationViewManager.class);
+            FormModelBinder creationManager = mock(FormModelBinder.class);
 
             when(creationManager.getFormModel()).thenReturn(mock(FormModel.class));
             when(creationManager.getLabel()).thenReturn("Container: " + i);
@@ -89,7 +89,7 @@ public class FormModelsPresenterTest {
                                             containerInstance,
                                             modelManagerInstance) {
             @Override
-            protected List<FormModelCreationContainer> getRegisteredCreationManagers() {
+            public List<FormModelCreationContainer> getRegisteredCreationManagers() {
                 return testContainers;
             }
         };

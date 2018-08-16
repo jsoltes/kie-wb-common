@@ -43,12 +43,12 @@ public class FormModelsPresenter implements IsWidget {
 
     protected ManagedInstance<FormModelCreationContainer> containerInstance;
 
-    protected ManagedInstance<FormModelCreationViewManager> modelManagerInstance;
+    protected ManagedInstance<FormModelBinder> modelManagerInstance;
 
     @Inject
     public FormModelsPresenter(FormModelsView view,
                                ManagedInstance<FormModelCreationContainer> containerInstance,
-                               ManagedInstance<FormModelCreationViewManager> modelManagerInstance) {
+                               ManagedInstance<FormModelBinder> modelManagerInstance) {
         this.view = view;
         this.containerInstance = containerInstance;
         this.modelManagerInstance = modelManagerInstance;
@@ -63,7 +63,7 @@ public class FormModelsPresenter implements IsWidget {
         view.setCreationViews(containers);
     }
 
-    protected List<FormModelCreationContainer> getRegisteredCreationManagers() {
+    public List<FormModelCreationContainer> getRegisteredCreationManagers() {
         List<FormModelCreationContainer> registeredContainers = new ArrayList<>();
 
         modelManagerInstance.forEach(modelManager -> {

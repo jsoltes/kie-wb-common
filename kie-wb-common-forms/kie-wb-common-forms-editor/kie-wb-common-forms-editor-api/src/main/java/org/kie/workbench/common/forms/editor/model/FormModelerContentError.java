@@ -18,6 +18,7 @@ package org.kie.workbench.common.forms.editor.model;
 
 import org.jboss.errai.common.client.api.annotations.MapsTo;
 import org.jboss.errai.common.client.api.annotations.Portable;
+import org.kie.workbench.common.forms.model.FormModel;
 
 @Portable
 public class FormModelerContentError {
@@ -28,33 +29,28 @@ public class FormModelerContentError {
 
     private String sourceType;
 
-    public FormModelerContentError(@MapsTo("shortMessage") String shortMessage, @MapsTo("fullMessage") String fullMessage, @MapsTo("sourceType") String sourceType) {
+    private FormModel originalModel;
+
+    public FormModelerContentError(@MapsTo("shortMessage") String shortMessage, @MapsTo("fullMessage") String fullMessage, @MapsTo("sourceType") String sourceType, @MapsTo("originalModel") FormModel originalModel) {
         this.shortMessage = shortMessage;
         this.fullMessage = fullMessage;
         this.sourceType = sourceType;
+        this.originalModel = originalModel;
     }
 
     public String getShortMessage() {
         return shortMessage;
     }
 
-    public void setShortMessage(String shortMessage) {
-        this.shortMessage = shortMessage;
-    }
-
     public String getFullMessage() {
         return fullMessage;
-    }
-
-    public void setFullMessage(String fullMessage) {
-        this.fullMessage = fullMessage;
     }
 
     public String getSourceType() {
         return sourceType;
     }
 
-    public void setSourceType(String sourceType) {
-        this.sourceType = sourceType;
+    public FormModel getOriginalModel() {
+        return originalModel;
     }
 }

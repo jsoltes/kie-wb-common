@@ -24,18 +24,19 @@ import javax.inject.Inject;
 
 import org.jboss.errai.common.client.api.Caller;
 import org.jboss.errai.ui.client.local.spi.TranslationService;
-import org.kie.workbench.common.forms.editor.client.handler.formModel.FormModelCreationViewManager;
+import org.kie.workbench.common.forms.editor.client.handler.formModel.FormModelBinder;
 import org.kie.workbench.common.forms.jbpm.client.resources.i18n.Constants;
 import org.kie.workbench.common.forms.jbpm.model.authoring.JBPMFormModel;
 import org.kie.workbench.common.forms.jbpm.model.authoring.JBPMProcessModel;
 import org.kie.workbench.common.forms.jbpm.service.shared.BPMFinderService;
+import org.kie.workbench.common.forms.model.FormModel;
 import org.kie.workbench.common.widgets.client.handlers.NewResourcePresenter;
 import org.uberfire.backend.vfs.Path;
 import org.uberfire.client.mvp.UberElement;
 
 @Dependent
-public class JBPMFormModelCreationPresenterManager implements FormModelCreationViewManager<JBPMFormModel>,
-                                                              JBPMFormModelCreationView.Presenter {
+public class JBPMFormModelBinder implements FormModelBinder<JBPMFormModel>,
+                                            JBPMFormModelCreationView.Presenter {
 
     protected Caller<BPMFinderService> finderService;
 
@@ -48,10 +49,10 @@ public class JBPMFormModelCreationPresenterManager implements FormModelCreationV
     private JBPMFormModel model;
 
     @Inject
-    public JBPMFormModelCreationPresenterManager(Caller<BPMFinderService> finderService,
-                                                 JBPMFormModelCreationView view,
-                                                 TranslationService translationService,
-                                                 NewResourcePresenter newResourcePresenter) {
+    public JBPMFormModelBinder(Caller<BPMFinderService> finderService,
+                               JBPMFormModelCreationView view,
+                               TranslationService translationService,
+                               NewResourcePresenter newResourcePresenter) {
         this.finderService = finderService;
         this.view = view;
         this.translationService = translationService;
@@ -103,6 +104,11 @@ public class JBPMFormModelCreationPresenterManager implements FormModelCreationV
     @Override
     public UberElement getView() {
         return view;
+    }
+
+    @Override
+    public boolean supports(FormModel formModel) {
+        return false;
     }
 
     @Override

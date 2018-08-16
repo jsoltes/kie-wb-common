@@ -206,20 +206,20 @@ public class FormEditorServiceImpl extends KieService<FormModelerContent> implem
     @Override
     protected FormModelerContent constructContent(Path path, Overview overview) {
 
-        FormModelerContent formModelConent = new FormModelerContent();
+        FormModelerContent formModelContent = new FormModelerContent();
 
         try {
             org.uberfire.java.nio.file.Path kiePath = Paths.convert(path);
 
             FormDefinition form = findForm(kiePath);
 
-            formModelConent.setDefinition(form);
-            formModelConent.setPath(path);
-            formModelConent.setOverview(overview);
+            formModelContent.setDefinition(form);
+            formModelContent.setPath(path);
+            formModelContent.setOverview(overview);
 
             FormEditorRenderingContext context = createRenderingContext(form, path);
 
-            formModelConent.setRenderingContext(context);
+            formModelContent.setRenderingContext(context);
 
             if (Optional.ofNullable(form.getModel()).isPresent()) {
 
@@ -245,9 +245,9 @@ public class FormEditorServiceImpl extends KieService<FormModelerContent> implem
                             }
                         });
 
-                        formModelConent.setSynchronizationResult(synchronizationResult);
+                        formModelContent.setSynchronizationResult(synchronizationResult);
                     } catch (SourceFormModelNotFoundException ex) {
-                        formModelConent.setError(new FormModelerContentError(ex.getShortMessage(), ex.getFullMessage(), ex.getModelSource()));
+                        formModelContent.setError(new FormModelerContentError(ex.getShortMessage(), ex.getFullMessage(), ex.getModelSource(), ex.getFormModel()));
                     }
                 }
             }
@@ -257,13 +257,13 @@ public class FormEditorServiceImpl extends KieService<FormModelerContent> implem
             writer.write(shortMessage);
             writer.write("\nFull error message:\n");
             e.printStackTrace(new PrintWriter(writer));
-            formModelConent.setError(new FormModelerContentError(shortMessage, writer.toString(), null));
+            formModelContent.setError(new FormModelerContentError(shortMessage, writer.toString(), null, null));
             log.warn("Error loading form " + path.toURI(), e);
         }
 
         resourceOpenedEvent.fire(new ResourceOpenedEvent(path, sessionInfo));
 
-        return formModelConent;
+        return formModelContent;
     }
 
     protected FormEditorRenderingContext createRenderingContext(FormDefinition form, Path formPath) {

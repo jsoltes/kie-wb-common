@@ -32,6 +32,7 @@ import org.jboss.errai.ui.client.local.spi.TranslationService;
 import org.jboss.errai.ui.shared.api.annotations.DataField;
 import org.jboss.errai.ui.shared.api.annotations.EventHandler;
 import org.jboss.errai.ui.shared.api.annotations.Templated;
+import org.kie.workbench.common.forms.editor.client.handler.formModel.FormModelBinder;
 import org.kie.workbench.common.forms.editor.client.resources.i18n.FormEditorConstants;
 import org.uberfire.ext.widgets.common.client.common.popups.BaseModal;
 import org.uberfire.ext.widgets.common.client.common.popups.footers.ModalFooterOKButton;
@@ -69,6 +70,22 @@ public class ErrorMessageDisplayerViewImpl implements ErrorMessageDisplayerView,
     private RadioInput continueRadio;
 
     @Inject
+    @DataField
+    private Div rebindRadioContainer;
+
+    @Inject
+    @DataField
+    private Label rebindRrebindRadioLabelContainer;
+
+    @Inject
+    @DataField
+    private RadioInput rebindRadio;
+
+    @Inject
+    @DataField
+    private Div rebindOptionsContainer;
+
+    @Inject
     private TranslationService translationService;
 
     private Presenter presenter;
@@ -92,6 +109,11 @@ public class ErrorMessageDisplayerViewImpl implements ErrorMessageDisplayerView,
 
     @Override
     public void show(String message) {
+        show(message,null);
+    }
+
+    @Override
+    public void show(String message, FormModelBinder formModelBinder) {
         errorMessageContainer.setTextContent(message);
         closeEditorRadio.setChecked(true);
         continueRadio.setChecked(false);
@@ -129,6 +151,11 @@ public class ErrorMessageDisplayerViewImpl implements ErrorMessageDisplayerView,
     public void setShowMoreLabel(String label) {
         showMoreAnchor.setTitle(label);
         showMoreAnchor.setTextContent(label);
+    }
+
+    @Override
+    public void enableRebindOption(FormModelBinder manager) {
+
     }
 
     @Override

@@ -21,7 +21,7 @@ import javax.inject.Inject;
 import org.jboss.errai.common.client.api.IsElement;
 import org.jboss.errai.common.client.dom.HTMLElement;
 import org.kie.soup.commons.validation.PortablePreconditions;
-import org.kie.workbench.common.forms.editor.client.handler.formModel.FormModelCreationViewManager;
+import org.kie.workbench.common.forms.editor.client.handler.formModel.FormModelBinder;
 import org.kie.workbench.common.forms.editor.client.handler.formModel.SelectModelCreatorManagerCallback;
 import org.uberfire.backend.vfs.Path;
 import org.uberfire.client.mvp.UberElement;
@@ -34,14 +34,14 @@ public class FormModelCreationContainer implements FormModelCreationContainerVie
 
     private SelectModelCreatorManagerCallback callback;
 
-    private FormModelCreationViewManager creationViewManager;
+    private FormModelBinder creationViewManager;
 
     @Inject
     public FormModelCreationContainer(FormModelCreationContainerView view) {
         this.view = view;
     }
 
-    public void setup(FormModelCreationViewManager creationViewManager,
+    public void setup(FormModelBinder creationViewManager,
                       SelectModelCreatorManagerCallback callback) {
         PortablePreconditions.checkNotNull("creationViewManager",
                                            creationViewManager);
@@ -54,7 +54,7 @@ public class FormModelCreationContainer implements FormModelCreationContainerVie
         view.init(this);
     }
 
-    public FormModelCreationViewManager getCreationViewManager() {
+    public FormModelBinder getCreationViewManager() {
         return creationViewManager;
     }
 

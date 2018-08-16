@@ -61,6 +61,11 @@ public class DataObjectFormModel extends AbstractFormModel implements
     }
 
     @Override
+    public boolean allowsRebinding() {
+        return true;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

@@ -23,7 +23,7 @@ import org.uberfire.client.mvp.UberElement;
 /**
  * Defines a view to create FormModels on the FormEditor
  */
-public interface FormModelCreationViewManager<F extends FormModel> {
+public interface FormModelBinder<F extends FormModel> {
 
     /**
      * Returns the label that will be shown on the selection radios
@@ -59,4 +59,10 @@ public interface FormModelCreationViewManager<F extends FormModel> {
      * Retrieves the view that contains the display form
      */
     UberElement getView();
+
+    /**
+     * Determines if to
+     * @return
+     */
+    boolean supports(FormModel formModel);
 }

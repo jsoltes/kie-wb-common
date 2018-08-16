@@ -16,6 +16,8 @@
 
 package org.kie.workbench.common.forms.editor.client.editor.errorMessage;
 
+import org.kie.workbench.common.forms.editor.client.handler.formModel.FormModelBinder;
+
 public interface ErrorMessageDisplayerView {
 
     void init(Presenter presenter);
@@ -30,7 +32,11 @@ public interface ErrorMessageDisplayerView {
 
     void setShowMoreLabel(String label);
 
+    void enableRebindOption(FormModelBinder manager);
+
     boolean isClose();
+
+    void show(String shortMessage, FormModelBinder formModelBinder);
 
     interface Presenter {
 
